@@ -1,0 +1,26 @@
+{
+  "name": "work4you",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "server"
+  ],
+  "scripts": {
+    "dev:main": "npm run dev --workspace=apps/main",
+    "dev:request": "npm run dev --workspace=apps/request -- -p 3001",
+    "dev:server": "npm run dev --workspace=server",
+    "server": "npm run dev --workspace=server",
+    "dev": "concurrently \"npm run dev:main\" \"npm run dev:request\" \"npm run dev:server\"",
+    "dev:fast": "concurrently \"npm run dev:main\" \"npm run dev:server\"",
+    "build:main": "npm run build --workspace=apps/main",
+    "build:request": "npm run build --workspace=apps/request",
+    "build": "npm run build:main && npm run build:request"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "dependencies": {
+    "mongodb": "^7.2.0"
+  }
+}
